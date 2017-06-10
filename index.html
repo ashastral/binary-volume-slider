@@ -11,10 +11,16 @@
   
   <body>
     <input type="range" max="4" value="0" />
+    <p class="output">0%</p>
   </body>
   
   <script>
-    $('input[type="range"]').rangeslider();
+    $('input[type="range"]').rangeslider({
+      polyfill: false,
+      onSlide: function(position, value) {
+        $('.output').html(value.toString(2) + '%');
+      }
+    });
   </script>
   
 </html>
