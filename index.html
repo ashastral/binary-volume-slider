@@ -34,11 +34,12 @@
       onSlide: function(position, value) {
         var binaryVolume = value.toString(2);
         $('.output').html(binaryVolume + '%');
-        $('#ytplayer').setVolume(int(binaryVolume));
+        $('#ytplayer').setVolume(parseInt(binaryVolume));
       }
     });
     
     $('#ytplayer').YTplayer({
+      videoId: 'llyiQ4I-mcQ',
       onReady: function() {
         $('#ytplayer').setVolume(0);
       },
