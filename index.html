@@ -17,7 +17,20 @@
          text-align: center;
       }
       
+      #glass, #ytplayer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      
+      #glass {
+        background-color: white;
+      }
+      
       #ytplayer {
+        z-index: -1;
       }
     </style>
   </head>
@@ -25,6 +38,7 @@
   <body>
     <input type="range" max="4" value="0" />
     <p class="output">0%</p>
+    <div id="glass"></div>
     <div id="ytplayer"></div>
   </body>
   
@@ -32,9 +46,11 @@
     $('input[type="range"]').rangeslider({
       polyfill: false,
       onSlide: function(position, value) {
-        var binaryVolume = value.toString(2);
-        $('.output').html(binaryVolume + '%');
-        $('#ytplayer').setVolume(parseInt(binaryVolume));
+        var binaryVolumeStr = value.toString(2);
+        var binaryVolume = parseInt(binaryVolumeStr);
+        $('.output').html(binaryVolumeStr + '%');
+        $('#ytplayer').setVolume(binaryVolume);
+        $('#glass').css('opacity', (100 - binaryVolume).toString() + '%');
       }
     });
     
