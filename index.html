@@ -27,10 +27,11 @@
       
       #glass {
         background-color: white;
+        z-index: -1;
       }
       
       #ytplayer {
-        z-index: -1;
+        z-index: -2;
       }
     </style>
   </head>
@@ -50,7 +51,7 @@
         var binaryVolume = parseInt(binaryVolumeStr);
         $('.output').html(binaryVolumeStr + '%');
         $('#ytplayer').setVolume(binaryVolume);
-        $('#glass').css('opacity', (100 - binaryVolume).toString() + '%');
+        $('#glass').css('opacity', (1 - (binaryVolume/100)).toString());
       }
     });
     
